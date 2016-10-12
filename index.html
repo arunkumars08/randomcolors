@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Colors</title>
+		<link href="dist/css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="user-dialog">
+			<div class="inner-dialog">
+				<div class="form-fields">
+					<label for="rows">No. of Rows:</label>
+					<input id="rows" type="text" value="10" /><br />
+					<label for="cols">No. of Columns:</label>
+					<input id="cols" type="text" value="10" /><br />
+					<label for="time">Timeout dur. (ms):</label>
+					<input id="time" type="text" value="2000" /><br />
+					<button id="submit">Generate Grid</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="dist/js/AppUtils-min.js"></script>
+		<script type="text/javascript" src="dist/js/GridModule-min.js"></script>
+		<script type="text/javascript">
+			/*window.onload = function () {
+				var cm = new ColorsModule(10, 10, 5000);
+				cm.init();
+			};*/
+			document.getElementById('submit').addEventListener('click', function (event) {
+				var rows = document.getElementById('rows').value.trim() === '' ? Math.round(Math.random() * ( 20 - 1 ) + 1) : document.getElementById('rows').value;
+				var cols = document.getElementById('cols').value.trim() === '' ? Math.round(Math.random() * ( 20 - 1 ) + 1) : document.getElementById('cols').value;
+				var timeout = document.getElementById('time').value.trim() === '' ? 2000 : document.getElementById('time').value;
+				
+				var dialog = document.getElementsByClassName('user-dialog')[0];
+				document.body.removeChild(dialog);
+				
+				var cm = new ColorsModule(rows, cols, timeout);
+				cm.init();
+			});
+		</script>
+	</body>
+</html>
